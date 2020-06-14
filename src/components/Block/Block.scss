@@ -1,0 +1,27 @@
+.block {
+    padding: 45px;
+    background: #fff;
+    box-shadow: 0 0 25px rgba( 0, 0, 0, 0.6);
+    border-radius: 3px;
+    justify-content: center;
+    align-items: center;
+}
+
+.small {
+    width: 500px;
+    height: 300px;
+}
+
+.medium {
+    width: 700px;
+    height: 500px;
+}
+
+.large {
+    width: 1000px;
+    height: 700px;
+}
+
+.column {
+    flex-direction: column;
+}
