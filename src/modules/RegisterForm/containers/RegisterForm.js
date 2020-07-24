@@ -16,6 +16,17 @@ export default withFormik({
     ) {
       errors.email = 'Invalid email address';
     }
+
+    if ( !values.password ) {
+      errors.password = 'Required'
+
+    } 
+    else if ( !/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(values.password) ) { 
+
+      errors.password = 'Password should contain at least 1 digit upper case and lower case letters and more than 6 symbols'
+
+    }
+
     return errors;
   },
 
