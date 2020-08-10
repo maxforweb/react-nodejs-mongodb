@@ -23,11 +23,11 @@ const RegisterForm = props => {
             <Form name="normal_login" className="login-form" onSubmit={handleSubmit} >
                 <Form.Item
                 hasFeedback
-                
                 >
                     <Input prefix={<UserOutlined className="site-form-item-icon" />} size='large' 
                     placeholder="Name"  />
                 </Form.Item>
+
                 <Form.Item
                 validateStatus={ !touched.email ? '': errors.email  ? 'error' : 'success' }
                 help={!touched.email ? '' : errors.email}
@@ -43,6 +43,7 @@ const RegisterForm = props => {
                     onBlur={handleBlur}
                     />
                 </Form.Item>
+
                 <Form.Item
                 validateStatus={ !touched.password ? '' : errors.password  ? 'error' : 'success' }
                 help={ !touched.password ? '' : errors.password }
@@ -59,6 +60,7 @@ const RegisterForm = props => {
                     onBlur={handleBlur}
                     />
                 </Form.Item>
+
                 <Form.Item
                 validateStatus={ !touched.password ? '' : errors.password  ? 'error' : 'success' }
                 hasFeedback
@@ -70,6 +72,7 @@ const RegisterForm = props => {
                     size='large'
                     />
                 </Form.Item>
+                
                 <Form.Item>
                     <Button type="primary" htmlType="submit" className="login-form-button" onClick={handleSubmit}>
                         Create new account

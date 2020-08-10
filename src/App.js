@@ -11,8 +11,8 @@ class App extends React.Component {
     
     return(
       <>
-        <Route exact path={['/', '/login', '/register']} component={Auth} />
-        <Route exact path={'/im'} component={Home} />
+        <Route exact path={[ '/login', '/register' ]} component={Auth} />
+        <Route exact path={[ '/', '/home' ]} component={Home} />
       </>);
   }
 }

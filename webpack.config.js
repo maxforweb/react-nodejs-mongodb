@@ -60,7 +60,9 @@ const config = {
       components: path.resolve(__dirname, 'src/components/'),
       modules: path.resolve(__dirname, 'src/modules/'),
       pages: path.resolve(__dirname, 'src/pages/'),
-      reducers: path.resolve(__dirname, 'src/reducers/')
+      reducers: path.resolve(__dirname, 'src/reducers/'),
+      utils: path.resolve(__dirname, 'src/utils/'),
+      assets: path.resolve(__dirname, 'src/assets')
     }
   },
   devServer: {

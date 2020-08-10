@@ -1,32 +1,16 @@
 import { withFormik } from 'formik';
 import RegisterForm from '../components/RegisterForm';
-
+import validate from 'utils/validate';
 
 export default withFormik({
-  mapPropsToValues: () => ({ email: '' }),
-
+  
   validate: values => {
     let errors = {};
-    if (!values.email) {
-      errors.email = 'Required';
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(
-        values.email
-      )
-    ) {
-      errors.email = 'Invalid email address';
-    }
 
-    if ( !values.password ) {
-      errors.password = 'Required'
-
-    } 
-    else if ( !/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(values.password) ) { 
-
-      errors.password = 'Password should contain at least 1 digit upper case and lower case letters and more than 6 symbols'
-
-    }
-
+    Object.keys(values).forEach( 
+      key => validate[ key ] && validate[ key ](errors, values[key]) 
+    );
+    
     return errors;
   },
 
