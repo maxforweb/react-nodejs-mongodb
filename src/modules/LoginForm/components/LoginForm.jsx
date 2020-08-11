@@ -17,8 +17,8 @@ const LoginForm = props => {
 
     return (
         <Block className=' medium column'>
-            <h1> Log In </h1>
-            <p> Please log in into your account </p>
+            <h1> Войти </h1>
+            <p> Пожалуйста войдите в свой аккаунт </p>
             <Form
                 name="normal_login"
                 className="login-form"
@@ -71,12 +71,12 @@ const LoginForm = props => {
 
                 <Form.Item>
                     <Button type="primary" htmlType="submit" className="login-form-button" onClick={handleSubmit}>
-                        Log in
+                        Войти
                     </Button>
                     Or <Link to='/register'>register now!</Link>
                 </Form.Item>
                 <Button type='primary' className='Login-form-button'>
-                    <Link to='/home'> Home page </Link>
+                    <Link to='/home'> Начальная страница </Link>
                 </Button>
             </Form>
         </Block>

@@ -18,8 +18,8 @@ const RegisterForm = props => {
 
     return (
         <Block className=' medium column'>
-            <h1> Register </h1>
-            <p> Create a new acount </p>
+            <h1> Регистрация  </h1>
+            <p> Создайте новый аккаунт </p>
             <Form name="normal_login" className="login-form" onSubmit={handleSubmit} >
                 <Form.Item
                 hasFeedback
@@ -75,7 +75,7 @@ const RegisterForm = props => {
                 
                 <Form.Item>
                     <Button type="primary" htmlType="submit" className="login-form-button" onClick={handleSubmit}>
-                        Create new account
+                        Создать новый аккаунт 
                     </Button>
                     Or <Link to='/login'>Log in</Link>
                 </Form.Item>

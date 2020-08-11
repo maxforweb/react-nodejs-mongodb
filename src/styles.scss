@@ -16,7 +16,6 @@ img {
 
 ul, li, div, body, main, section, aside, article, header, footer, nav {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: row;
 }
 
@@ -34,5 +33,4 @@ a[href], li {
 #app {
     width: 100%;
     justify-content: center;
-    align-items: center;
 }
