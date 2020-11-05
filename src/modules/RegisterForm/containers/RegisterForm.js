@@ -3,13 +3,19 @@ import RegisterForm from '../components/RegisterForm';
 import validate from 'utils/validate';
 
 export default withFormik({
+  enableReinitialize: true,
+    mapPropsToValues: () => ({
+      name: '',
+      email: '',
+      password: '',
+      repeatPassword: ''
+    }),
   
   validate: values => {
     let errors = {};
 
-    Object.keys(values).forEach( 
-      key => validate[ key ] && validate[ key ](errors, values[key]) 
-    );
+    validate({ isAuth: false, values, errors })
+    
     
     return errors;
   },

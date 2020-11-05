@@ -33,7 +33,7 @@ const config = {
         ]
       },
       {
-        test: /\.svg$/,
+        test: /\.(svg|jpe?g)$/,
         use: 'file-loader'
       },
       {
@@ -46,7 +46,7 @@ const config = {
             }
           }
         ]
-      }
+      },
     ]
   },
   resolve: {
@@ -62,7 +62,9 @@ const config = {
       pages: path.resolve(__dirname, 'src/pages/'),
       reducers: path.resolve(__dirname, 'src/reducers/'),
       utils: path.resolve(__dirname, 'src/utils/'),
-      assets: path.resolve(__dirname, 'src/assets')
+      assets: path.resolve(__dirname, 'src/assets'),
+      containers: path.resolve(__dirname, 'src/containers'),
+      core: path.resolve(__dirname, 'src/core')
     }
   },
   devServer: {

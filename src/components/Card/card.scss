@@ -1,4 +1,22 @@
-.ant-card-head {
-    min-width: 100%;
-    justify-content: space-around;
+.ant-card {
+    width: 45%;
+    border: 2px solid #1a9b2f !important;
+    margin-top: 20px;
+}
+
+.ant-card-body {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    h1,h3 {
+        width: 100%;
+        text-align: center; 
+    }
+
+    img {
+        width: 500px;
+        height: 300px;
+    }
 }

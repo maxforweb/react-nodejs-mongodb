@@ -4,6 +4,8 @@ import { Form, Input, Checkbox  } from 'antd';
 import { MailOutlined, LockOutlined } from '@ant-design/icons';
 import {Link} from 'react-router-dom';
 
+import { validateField } from "utils/helpers";
+
 const LoginForm = props => {
 
     const {
@@ -28,7 +30,7 @@ const LoginForm = props => {
                 
                 >
                 <Form.Item
-                validateStatus={ !touched.email ? '': errors.email  ? 'error' : 'success' }
+                validateStatus= {validateField("email", touched, errors)}
                 help={!touched.email ? '' : errors.email}
                 hasFeedback
                 >
@@ -44,7 +46,7 @@ const LoginForm = props => {
                 </Form.Item>
 
                 <Form.Item
-                    validateStatus={ !touched.password ? '' : errors.password  ? 'error' : 'success' }
+                    validateStatus={validateField("password", touched, errors)}
                     help={ !touched.password ? '' : errors.password }
                     hasFeedback
                 >

@@ -3,7 +3,8 @@ import { Form, Input } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined  } from '@ant-design/icons';
 import {Link} from 'react-router-dom';
 
-import {Button, Block} from 'components'
+import {Button, Block} from 'components';
+import { validateField } from "utils/helpers";
 
 const RegisterForm = props => {
     
@@ -22,20 +23,29 @@ const RegisterForm = props => {
             <p> Создайте новый аккаунт </p>
             <Form name="normal_login" className="login-form" onSubmit={handleSubmit} >
                 <Form.Item
+                validateStatus= {validateField("name", touched, errors)}  
+                help={!touched.name ? '' : errors.name}
                 hasFeedback
                 >
-                    <Input prefix={<UserOutlined className="site-form-item-icon" />} size='large' 
-                    placeholder="Name"  />
+                    <Input
+                        id='name'
+                        prefix={<UserOutlined className="site-form-item-icon" />} 
+                        size='large' 
+                        placeholder="Name"
+                        value={values.name}
+                        onChange={handleChange}
+                        onBlur={handleBlur} 
+                    />
                 </Form.Item>
 
                 <Form.Item
-                validateStatus={ !touched.email ? '': errors.email  ? 'error' : 'success' }
+                validateStatus= {validateField("email", touched, errors)}  
                 help={!touched.email ? '' : errors.email}
                 hasFeedback
                 >
                     <Input 
                     id='email'
-                    prefix={<MailOutlined className="site-form-item-icon" />}  
+                    prefix={<MailOutlined className="site-form-item-icon" />}
                     size='large' 
                     placeholder="Email"  
                     value={values.email}
@@ -45,7 +55,7 @@ const RegisterForm = props => {
                 </Form.Item>
 
                 <Form.Item
-                validateStatus={ !touched.password ? '' : errors.password  ? 'error' : 'success' }
+                validateStatus={validateField("password", touched, errors)}
                 help={ !touched.password ? '' : errors.password }
                 hasFeedback
                 >
@@ -62,19 +72,24 @@ const RegisterForm = props => {
                 </Form.Item>
 
                 <Form.Item
-                validateStatus={ !touched.password ? '' : errors.password  ? 'error' : 'success' }
+                validateStatus={validateField("repeatPassword", touched, errors)}
+                help={ !touched.repeatPassword ? '' : errors.repeatPassword }
                 hasFeedback
                 >
                     <Input
+                    id="repeatPassword"
                     prefix={<LockOutlined className="site-form-item-icon" />}
                     type="password"
                     placeholder="Repeat password"
                     size='large'
+                    value={values.repeatPassword}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                     />
                 </Form.Item>
                 
                 <Form.Item>
-                    <Button type="primary" htmlType="submit" className="login-form-button" onClick={handleSubmit}>
+                    <Button type="primary" className="login-form-button" onClick={handleSubmit}>
                         Создать новый аккаунт 
                     </Button>
                     Or <Link to='/login'>Log in</Link>

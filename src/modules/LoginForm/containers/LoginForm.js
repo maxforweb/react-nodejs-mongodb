@@ -1,15 +1,19 @@
 import LoginForm from '../components/LoginForm';
-import auth from 'utils/auth';
+import validate from 'utils/validate';
 import { withFormik } from 'formik';
 
+
 export default withFormik({
-  
+    enableReinitialize: true,
+    mapPropsToValues: () => ({
+      email: '',
+      password: ''
+    }),
+
     validate: values => {
       let errors = {};
   
-      Object.keys(values).forEach( 
-        key => auth[ key ] && auth[ key ](errors, values[key]) 
-      );
+      validate({ isAuth: true, values, errors})
       
       return errors;
     },

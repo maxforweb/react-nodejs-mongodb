@@ -1,29 +1,34 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { Menu, Input } from "antd";
-import {SearchOutlined} from '@ant-design/icons';
+import { Menu } from "antd";
+import { UserOutlined } from '@ant-design/icons';
+
 
 import './header.scss';
 
 import logo from 'assets/logo3.png';
 
 
-export default class Header extends React.Component {
-    render(){
+const  Header = (props) => {
 
         return (
             <header>
-                <img src={logo} alt='logo' />
+                <div className='title'>
+                    <p className='title-name'>Go-Clean</p>
+                    <img src={logo} alt='logo' />
+                </div>
                 <Menu mode="horizontal"
                 className='menu'
-                defaultSelectedKeys={['1']}>
-                    <Menu.Item key="1" >Домой </Menu.Item>
-                    <Menu.Item key="2">Создать объявление </Menu.Item>
-                    <Menu.Item key="3"> Аккаунт </Menu.Item>
-                    <Menu.Item key="4">Option 4</Menu.Item>
+                defaultSelectedKeys={props.selectedKey}>
+                    <Menu.Item key="1" > <Link to='/' className='link' > Домой </Link> </Menu.Item>
+                    <Menu.Item key="2"> <Link to='/createad' className='link' > Создать объявление </Link> </Menu.Item>
+                    <Menu.Item key="4"> <Link to="/" className='link' > Option 4 </Link> </Menu.Item>
                 </Menu>
-                <Input className="search-input" prefix={<SearchOutlined />} />
+                <div className="user">
+                    <UserOutlined className='user-avatar'/>
+                </div>
             </header>
         )
-    }
 }
+
+export default Header
