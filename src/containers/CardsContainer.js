@@ -4,12 +4,11 @@ import { connect } from 'react-redux';
 import {CardsContainer as Container } from 'components';
 import { adsActions } from '../redux/actions';
 
-const CardsContainer = ({ items }) => {
+const CardsContainer = ({ getAds, items }) => {
     const [ selectValue, setValue ] = useState('');
     const [ filtred, setFilteredItems] = useState( Array.from(items) );
 
     const onSelectChange = (value) =>{
-        console.log(value);
         setValue(value);  
     }
 

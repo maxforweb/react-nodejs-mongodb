@@ -11,9 +11,9 @@ import "./styles.scss";
 
 var mountNode = document.getElementById("app");
 ReactDOM.render(
-    <Router >
-        <Provider store = {store}>
+    <Provider store = {store}>
+        <Router >
             <App />
-        </Provider>
-    </Router>
+        </Router> 
+    </Provider>
 , mountNode);
