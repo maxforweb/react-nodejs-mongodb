@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import {CardsContainer as Container } from 'components';
+import {CardsContainer as BaseContainer } from 'components';
 import { adsActions } from '../redux/actions';
 
-const CardsContainer = ({ getAds, items }) => {
+const CardsContainer = ({ getAds, setCurrentAd, items, isLoading }) => {
     const [ selectValue, setValue ] = useState('');
     const [ filtred, setFilteredItems] = useState( Array.from(items) );
 
     const onSelectChange = (value) =>{
         setValue(value);  
     }
-
 
     useEffect( () => {
         if( !items.length ) {
@@ -20,10 +19,12 @@ const CardsContainer = ({ getAds, items }) => {
     }, [items] );
 
     return(
-        <Container 
+        <BaseContainer 
             items={items}
             onSelectChange={onSelectChange}
             selectValue={selectValue}
+            onSelectAd={setCurrentAd}
+            isLoading={isLoading}
         />
     );
 };

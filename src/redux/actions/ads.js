@@ -5,10 +5,24 @@ const actions = {
         type: "ADS:SET_ITEMS",
         payload: items
     }),
+    setCurrentAd: id => ({
+        type: "ADS:SET_CURRENT_AD",
+        payload: id
+    }),
+    setIsLoading: bool => ({
+        type: "ADS:SET_IS_LOADING",
+        payload: bool
+    }),
     getAds: () => disapatch => {
-        adsApi.getAll().then( ( { data } ) => {
-            disapatch( actions.setAds( data ) );
-        })
+        disapatch(actions.setIsLoading(true))
+        adsApi
+            .getAll()
+            .then( ( { data } ) => {
+                disapatch( actions.setAds( data ) );
+            })
+            .catch(() => {
+                disapatch(actions.setIsLoading(false));
+            })
     }
 }
 

@@ -1,5 +1,5 @@
 .ant-card {
-    width: 45%;
+    width: 100%;
     border: 2px solid #1a9b2f !important;
     margin-top: 20px;
 }
@@ -15,8 +15,60 @@
         text-align: center; 
     }
 
-    img {
-        width: 500px;
-        height: 300px;
+    
+
+    .ad__info {
+        margin-top: 20px;
+        flex-direction: column;
+        
+        &--cardImage {
+            width: 500px;
+            height: 300px;
+        }
+        
+        .ant-empty {
+            width: 500px;
+            height: 200px;
+            justify-content: center;
+        }
+    }
+}
+
+.created__by {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+
+    &--user {
+        width: 50%;
+
+    }
+
+    &--userAvatar {
+        width: 50%;
+        height: 100px;
+        border-radius: 50%;
+        border: 1px solid #5ACC6D;
+    }
+
+    &--userInfo{
+        padding-left: 10px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &--userName {
+        font-size: 22px;
+        font-weight: normal;
+    }
+    
+    &--userPhone {
+        font-size: 16px;
+        
+    }
+
+    &--address {
+        align-items: center;
     }
 }

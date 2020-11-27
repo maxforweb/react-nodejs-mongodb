@@ -1,14 +1,16 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Select, Empty } from 'antd';
+import { Select, Empty, Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+
 
 import {Card} from 'components'
 
 import './cardsContainer.scss';
 
-const CardsContainer = ({ items, onSelectChange, selectValue }) => {
+const CardsContainer = ({ items, onSelectChange, selectValue, onSelectAd, isLoading }) => {
     const { Option } = Select;
-
+console.log(items.length)
     return (
         <>
             <Select 
@@ -23,13 +25,18 @@ const CardsContainer = ({ items, onSelectChange, selectValue }) => {
             <div className={classNames('cards_container')}>
                 
                 {
-                    items.length ? items.map( item => (
+                    isLoading ? (
+                        <Spin size='large' indicator={<LoadingOutlined style={{ fontSize: 36 }} spin />} />
+                    ):
+                    items && !isLoading ? items.map( item => (
                         <Card 
                             cardtitle={item.title}
                             subtitle={item.subTitle}
                             image={item.img}
                             price={item.price}
-                            key={item.id}
+                            key={item._id}
+                            onSelect={onSelectAd}
+                            {...item}
                         />
                     )) : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="На данный момент нет никаких объявлений" />
                 }
