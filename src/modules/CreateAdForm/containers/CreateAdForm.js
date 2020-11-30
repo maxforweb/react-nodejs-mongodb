@@ -13,9 +13,8 @@ export default withFormik({
 
     validate: values => {
         let errors = {};
-console.log(values)
+
         validate({ values, errors })
-        
         
         return errors;
     },

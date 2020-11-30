@@ -10,7 +10,6 @@ import './cardsContainer.scss';
 
 const CardsContainer = ({ items, onSelectChange, selectValue, onSelectAd, isLoading }) => {
     const { Option } = Select;
-console.log(items.length)
     return (
         <>
             <Select 
