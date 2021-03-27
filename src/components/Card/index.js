@@ -8,7 +8,7 @@ import { UserOutlined } from '@ant-design/icons';
 import './card.scss';
 
 const Cards = ( {
-    user,
+    owner,
     cardtitle, 
     subtitle, 
     image, 
@@ -27,17 +27,17 @@ const Cards = ( {
             onClick={onSelect.bind(this, _id)}>
                 <div className={'created__by'}>
                     <div className='created__by--user'>
-                    {
-                        user.avatar ? <img src={user.avatar} className='created__by--userAvatar' /> : <Avatar size={90} icon={<UserOutlined />} />
-                    } 
+                    
+                        <Avatar size={90} icon={<UserOutlined />} />
+                    
                         <div className="created__by--userInfo">
-                            <h3 className='created__by--userName'> {user.name} </h3>
-                            <p className="created__by--userPhone"> {user.phone} </p>
+                            <h3 className='created__by--userName'> {owner.fullName} </h3>
+                            <p className="created__by--userPhone"> {owner.phone} </p>
                         </div>
                     </div>
                     <div className='created__by--address' >
-                        <h3 className="created__by--homeAdress"> {user.address} </h3>
-                        <p className='created__by--area'> {user.area} </p>
+                        <h3 className="created__by--homeAdress"> {owner.address} </h3>
+                        <p className='created__by--area'> {owner.area} </p>
                     </div>
                 </div>
                 <div className="ad__info">
