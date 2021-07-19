@@ -10,11 +10,12 @@ import './cardsContainer.scss';
 
 const CardsContainer = ({ items, onSelectChange, selectValue, onSelectAd, isLoading }) => {
     const { Option } = Select;
+
     return (
         <>
             <Select 
-                value={selectValue}
-                onChange={ onSelectChange}
+                value={ selectValue }
+                onChange={ onSelectChange }
             >
                 <Option value="new">Newest</Option>
                 <Option value="old">Oldest</Option>
@@ -26,8 +27,8 @@ const CardsContainer = ({ items, onSelectChange, selectValue, onSelectAd, isLoad
                 {
                     isLoading ? (
                         <Spin size='large' indicator={<LoadingOutlined style={{ fontSize: 36 }} spin />} />
-                    ):
-                    items && !isLoading ? items.map( item => (
+                    ): !items.length && !isLoading ? 
+                    <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="На данный момент нет никаких объявлений" /> : items && !isLoading ? items.map( item => (
                         <Card 
                             cardtitle={item.title}
                             subtitle={item.subTitle}
@@ -37,7 +38,9 @@ const CardsContainer = ({ items, onSelectChange, selectValue, onSelectAd, isLoad
                             onSelect={onSelectAd}
                             {...item}
                         />
-                    )) : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="На данный момент нет никаких объявлений" />
+                    )) : <div>ERROR</div>
+                    
+                    
                 }
             </div>
         </>
