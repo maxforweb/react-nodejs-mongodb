@@ -8,8 +8,7 @@ import {CurrenatAdContainer} from 'containers';
 
 import './adPage.scss';   
 
-const AdPage = (props) => {
-    console.log(props)
+const AdPage = () => {
     return (
         <> 
             <Header selectedKey={'0'} />

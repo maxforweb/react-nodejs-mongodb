@@ -2,13 +2,13 @@ import { currentAdApi } from 'utils/api'
 
 
 const actions = {
-    setCurrentAd: items => ({
+    setCurrentAd: item => ({
         type: "CURRENT_AD:SET_AD_INFO",
-        payload: items
+        payload: item
     }),
-    getCurrentAd: (currentId) => disapatch => {
+    getCurrentAd: currentId => disapatch => {
         currentAdApi.getCurrentById(currentId).then( ( { data } ) => {
-            disapatch( actions.setCurrentAd( data ) );
+            disapatch( actions.setCurrentAd( data[0] ) );
         })
     }
 }

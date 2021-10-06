@@ -6,17 +6,16 @@ import { CurrentAd } from 'components';
 import { currentAdActions } from '../redux/actions';
 
 
-const CurrentAdContainer = ({getCurrentAd, user, currentAdId}) => {
-
+const CurrentAdContainer = ({getCurrentAd, currentAdId, currentAdInfo}) => {
 
     useEffect( () => {
-        if(currentAdId) {
+        if(!currentAdInfo._id) {
             getCurrentAd(currentAdId);
         }
-    },[currentAdId])
-
+    },{currentAdInfo})
+    
     return(
-        <div>Hello</div>
+        <div>{currentAdInfo.title}</div>
     )
 } 
 
@@ -24,7 +23,7 @@ export default connect(
     ({ ads, currentAd }) => ({
         currentAdId: ads.currentAd,
         ads: ads,
-        currentAdInfo: currentAd.items
+        currentAdInfo: currentAd.item
     }),
     currentAdActions
 )(CurrentAdContainer) ;

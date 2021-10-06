@@ -11,6 +11,8 @@ import './cardsContainer.scss';
 const CardsContainer = ({ items, onSelectChange, selectValue, onSelectAd, isLoading }) => {
     const { Option } = Select;
 
+
+
     return (
         <>
             <Select 
@@ -29,6 +31,7 @@ const CardsContainer = ({ items, onSelectChange, selectValue, onSelectAd, isLoad
                         <Spin size='large' indicator={<LoadingOutlined style={{ fontSize: 36 }} spin />} />
                     ): !items.length && !isLoading ? 
                     <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="На данный момент нет никаких объявлений" /> : items && !isLoading ? items.map( item => (
+                       
                         <Card 
                             cardtitle={item.title}
                             subtitle={item.subTitle}

@@ -25,6 +25,7 @@ const Cards = ( {
                 'card--small': size === "small",
             })}
             onClick={onSelect.bind(this, _id)}>
+                { owner ? (
                 <div className={'created__by'}>
                     <div className='created__by--user'>
                     
@@ -39,7 +40,8 @@ const Cards = ( {
                         <h3 className="created__by--homeAdress"> {owner.address} </h3>
                         <p className='created__by--area'> {owner.area} </p>
                     </div>
-                </div>
+                </div>) : <div></div>
+                } 
                 <div className="ad__info">
                 <h1>{cardtitle}</h1>
                 <h3>{subtitle}</h3>

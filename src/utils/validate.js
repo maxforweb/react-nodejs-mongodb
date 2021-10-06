@@ -16,9 +16,9 @@ export default ({ isAuth, values, errors }) => {
             if ( !value ) {
                 errors.password = 'Required'
             } 
-            else if ( !/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}/.test( value ) ) { 
-                errors.password = isAuth ? 'Wrong password' : 'Password should contain at least 1 digit, upper case and lower case letters and more than 6 symbols'
-            }
+            // else if ( !/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}/.test( value ) ) { 
+            //     errors.password = isAuth ? 'Wrong password' : 'Password should contain at least 1 digit, upper case and lower case letters and more than 6 symbols'
+            // }
     
         },
 
