@@ -27,7 +27,6 @@ header {
     } 
 
     .menu {
-        width: 600px;
         height: fit-content;
         background-color: initial;
         border: none;
@@ -35,21 +34,15 @@ header {
         li {
             font-family: 'Comfortaa', sans-serif;
             color: #ffff;
-        }
-
-        
+        }    
     }
+
     .search-input {
         max-width: 200px;
         height: 30px;
     }
-    .user {
-        width: 150px;
-        height: 100%;
-        align-items: center;
-    }
-    .user-avatar {
-        
+    
+    .user-avatar {    
         font-size: 30px;
         padding: 20px;
         border: 2px solid #fff;

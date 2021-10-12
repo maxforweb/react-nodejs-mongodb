@@ -19,8 +19,12 @@ img {
 }
 
 ul, li, div, body, main, section, aside, article, header, footer, nav {
-    display: flex;
-    flex-direction: row;
+    // display: flex;
+    // flex-direction: row;
+}
+
+ul, li {
+    list-style: none;
 }
 
 button {
@@ -37,5 +41,68 @@ a[href], li {
 #app {
     width: 100%;
     flex-direction: column;
+}
+
+.container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.d-flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.d-block {
+    display: block;
+}
+.d-grid {
+    display: -ms-grid;
+    display: grid;
+}
+.d-ib {
+    display: inline-block;
+}
+
+.align-items-center {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.align-items-start {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+}
+.align-items-end {
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+}
+
+.justify-content-between {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+.justify-content-center {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+.justify-content-around{
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+}
+.justify-content-start {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+}
+.justify-content-end {
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
 }
 
