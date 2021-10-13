@@ -20,14 +20,18 @@ const LoginWithFormik = withFormik({
     return errors;
   },
 
-  handleSubmit: (values, { props, setSubmitting }) => {
+  handleSubmit:  (values, { props, setSubmitting }) => {
     // setTimeout(() => {
     //   alert(JSON.stringify(values, null, 2));
     //   setSubmitting(false);
     // }, 1000);
-    console.log( props );
-    console.log(values);
-
+    
+    if ( props.loginUser(values) ) {
+      console.log(99);
+    } else {
+      console.log(88)
+    }
+    setSubmitting(false);
   },
   
     displayName: 'LoginForm ', 
