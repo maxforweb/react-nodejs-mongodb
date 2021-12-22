@@ -3,7 +3,7 @@ import React from "react";
 import { Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 
-import { Auth, CreateAd, Home, AdPage } from './pages';
+import { Auth, CreateAd, Home, AdPage, CalendarPage } from './pages';
 
 
 class App extends React.Component {
@@ -14,6 +14,7 @@ class App extends React.Component {
         <Route exact path={[ '/', '/home' ]} component={Home} />
         <Route exact path={[ '/createad']} component={CreateAd} />
         <Route  path={[ '/ad']} component={AdPage} />
+        <Route exact path={[ '/calendar']} component={CalendarPage} />
       </>);
   }
 }

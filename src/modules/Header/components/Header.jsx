@@ -28,6 +28,7 @@ const  Header = ({selectedKey, userInfo, isLoading, userAuthToken}) => {
                             <Menu.Item key="1" > <Link to='/' className='link' > Домой </Link> </Menu.Item>
                             <Menu.Item key="2"> <Link to='/createad' className='link' > Создать объявление </Link> </Menu.Item>
                             <Menu.Item key="4"> <Link to="/" className='link' > Option 4 </Link> </Menu.Item>
+                            <Menu.Item key="5"> <Link to="/calendar" className='link' > Calendar </Link> </Menu.Item>
                         </Menu>
                         <div className="user">
                             { userAuthToken ? (
