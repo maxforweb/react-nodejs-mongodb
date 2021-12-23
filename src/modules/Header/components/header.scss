@@ -1,13 +1,13 @@
 header {
     
     width: 100%;
-    height: 100px;
+    height: 70px;
     background-color: #5ACC6D;
     justify-content: space-around;
     align-items: center;
 
     .title {
-        width: 30%;
+        width: 100%;
         align-items: center;
         justify-content: center;
     }
@@ -15,15 +15,14 @@ header {
     .title-name {
         text-transform: uppercase;
         color: #ffff;
-        font-size: 40px;
+        font-size: 20px;
         margin: 0;
-        font-family: 'Comfortaa', sans-serif;
+        font-family: 'Roboto', sans-serif;
         font-weight: bold;
      }
 
     img {
-        width: 120px;
-        height: 90px;
+        width: 50px;
     } 
 
     .menu {
@@ -43,15 +42,15 @@ header {
     }
     
     .user-avatar {    
-        font-size: 30px;
-        padding: 20px;
+        font-size: 20px;
+        padding: 10px;
         border: 2px solid #fff;
         border-radius: 50%;
         transition: .4s;
     }
 
     .user-avatar:hover {
-        font-size: 40px;
+        transform: scale(1.2);
         transition: .4s ;
     }
     .link {

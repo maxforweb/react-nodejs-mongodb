@@ -14,6 +14,11 @@ const actions = {
         payload: bool
     }),
 
+    setTokens: tokens => ({
+        type: "USER:SET_USER_TOKENS",
+        payload: tokens
+    }),
+
     createUser: newUserData => dispatch => {
        dispatch(actions.setIsLoading(true));
        
@@ -24,21 +29,40 @@ const actions = {
         })
         .catch( (err) => {
             dispatch( actions.setIsLoading( false ) );
-            errorHelper.adMessage(error);
+            errorHelper.adMessage(err);
         }) 
     },
 
-    loginUser: userData => dispacth => {
+    loginUser: userData => dispatch => {
         dispatch( actions.setIsLoading( true ) );
 
         userApi
             .loginUser( userData )
-            .then( ( { user } ) => {
-                dispatch( actions.setUserDto( user ) );
+            .then( ( { data } ) => {
+                localStorage.setItem('token', data.tokens.accessToken);
+                dispatch( actions.setUserDto( data ) );
+                dispatch( actions.setTokens( data.tokens ) );
             })
             .catch( (err) => {
                 dispatch(actions.setIsLoading( false ) );
-                console.log(err);
+                errorHelper.adMessage(err);
             } )
+    },
+
+    logout: () => dispatch => {
+        dispatch( actions.setIsLoading ( true ) );
+
+        userApi
+            .logout()
+            .then( () => {
+                localStorage.removeItem('token');
+                dispatch ( actions.setUserDto( '' ) );
+                dispatch( actions.setTokens( '' ) );
+            })
+            .catch( err => {
+                console.log( err );
+            })
     }
 }
+
+export default actions;
