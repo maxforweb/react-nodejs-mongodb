@@ -23,9 +23,9 @@ const RegisterForm = props => {
             <p> Создайте новый аккаунт </p>
             <Form name="normal_login" className="login-form" onSubmit={handleSubmit} >
                 <Form.Item
-                validateStatus= {validateField("name", touched, errors)}  
-                help={!touched.name ? '' : errors.name}
-                hasFeedback
+                    validateStatus= {validateField("name", touched, errors)}  
+                    help={!touched.name ? '' : errors.name}
+                    hasFeedback
                 >
                     <Input
                         id='name'

@@ -1,14 +1,18 @@
 import CreateAdForm from '../components/CreateAdForm';
 import { withFormik } from 'formik';
 import validate from 'utils/validate';
+import { connect } from 'react-redux';
 
-export default withFormik({
+import {adsActions} from 'actions';
+
+const createAd =  withFormik({
     enableReinitialize: true,
     mapPropsToValues: () => ({
-        phone: '',
-        name: '',
         adress: '',
-        email: ''
+        area: 'first',
+        price: '',
+        title: '',
+        description: '',
     }),
 
     validate: values => {
@@ -19,13 +23,27 @@ export default withFormik({
         return errors;
     },
 
-    handleSubmit: (values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 1000);
+    handleSubmit: async (values, {props, setSubmitting }) => {
+        const newAd = {
+            owner: props.userInfo.id,
+            ...values,
+        }
+
+        console.log(newAd);
+
+        await props.createAd(newAd);
+
+        setSubmitting(false);
     },
 
     displayName: 'CreateAdForm ', 
 
 })(CreateAdForm);
+
+export default connect(
+    ({user}) => ({
+        isAuth: user.isAuthenticated,
+        userInfo: user.userInfo
+    }),
+    adsActions
+)(createAd);

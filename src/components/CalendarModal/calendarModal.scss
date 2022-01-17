@@ -2,3 +2,51 @@
     margin-right: 5px;
     cursor: pointer;
 }
+
+.claendar_notes {
+    margin-bottom: 0;
+}
+
+.claendar_note {
+    margin-bottom: 1rem ;
+
+    &--edit_note_inputs {
+        .ant-select {
+            margin: 0;
+        }
+    }
+
+    &--edit_note_input {
+        margin-left: 10px !important;
+    }
+    
+    .save_button, .close_edit {
+        display: none;
+    }
+
+    .calnedar_modal--ation_buttons {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.claendar_note.show_input {
+
+    .claendar_note--edit_note_inputs {
+        display: flex;
+        align-items: center;
+    }
+
+    .claendar_note--current_note {
+        display: none;
+    }
+
+    .edit_button, .delete_button {
+        display: none;
+    }
+
+    .save_button, .close_edit {
+        display: inline-block;
+    }
+
+}

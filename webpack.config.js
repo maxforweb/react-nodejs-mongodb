@@ -56,7 +56,7 @@ const config = {
     ],
     alias: {
       'react-dom': '@hot-loader/react-dom',
-      actions: path.resolve(__dirname, 'src/actions/'),
+      actions: path.resolve(__dirname, 'src/redux/actions/'),
       components: path.resolve(__dirname, 'src/components/'),
       modules: path.resolve(__dirname, 'src/modules/'),
       pages: path.resolve(__dirname, 'src/pages/'),

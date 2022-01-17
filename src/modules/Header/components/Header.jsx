@@ -18,33 +18,6 @@ const  Header = ({selectedKey, userInfo, isLoading, userAuthToken, logout}) => {
         return (
             <header className="d-flex">
                 <div className="container">
-<<<<<<< HEAD
-                    <div className="d-flex align-items-center justify-content-between">
-                    
-                        <div className='title d-flex'>
-                            <p className='title-name'>Go-Clean</p>
-                            <img src={logo} alt='logo' />
-                        </div>
-                        <Menu mode="horizontal"
-                        className='menu'
-                        defaultSelectedKeys={selectedKey}>
-                            <Menu.Item key="1" > <Link to='/' className='link' > Домой </Link> </Menu.Item>
-                            <Menu.Item key="2"> <Link to='/createad' className='link' > Создать объявление </Link> </Menu.Item>
-                            <Menu.Item key="4"> <Link to="/" className='link' > Option 4 </Link> </Menu.Item>
-                            <Menu.Item key="5"> <Link to="/calendar" className='link' > Calendar </Link> </Menu.Item>
-                        </Menu>
-                        <div className="user">
-                            { userAuthToken ? (
-                                <UserOutlined className='user-avatar'/>
-                            ) : (
-                                <div className="header_auth_container d-flex justify-content-between">
-                                    <Link to="/login" className="btn btn-default login_btn">Войти в аккаунт</Link>        
-                                    <Link to="/register" className="btn btn-default register_btn">Зарегистрироваться</Link>        
-                                </div>
-                            )}
-                        </div>
-                    </div>
-=======
                     <Row
                         align="middle"
                         justify="center"
@@ -67,6 +40,7 @@ const  Header = ({selectedKey, userInfo, isLoading, userAuthToken, logout}) => {
                                 <Menu.Item key="1" > <Link to='/' className='link' > Домой </Link> </Menu.Item>
                                 <Menu.Item key="2"> <Link to='/createad' className='link' > Создать объявление </Link> </Menu.Item>
                                 <Menu.Item key="4"> <Link to="/" className='link' > Option 4 </Link> </Menu.Item>
+                                <Menu.Item key="5"> <Link to="/calendar" className='link' > Calendar </Link> </Menu.Item>
                                 
                             </Menu>
                         </Col>
@@ -91,7 +65,6 @@ const  Header = ({selectedKey, userInfo, isLoading, userAuthToken, logout}) => {
                             </div>
                         </Col>
                     </Row>
->>>>>>> develop
                 </div>
             </header>
         )

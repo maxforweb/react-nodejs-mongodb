@@ -1,66 +1,59 @@
-import React, { useEffect, useState } from 'react';
-import moment from 'moment';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import { connect } from 'react-redux';
 
-import { Calendar, CalndarModal } from 'components';
+import { Calendar, CalendarModal } from 'components';
+import { calendarNotesActions } from '../redux/actions';
+
 import { Badge } from 'antd';
-import { CalendarModal } from '../components';
 
-const CalendarContainer = () => {
-    const [ currentDate, setCurrentDate ] = useState('');
-    const [ currentDateList, setCurrentDateList ] = useState( [{
-        type: "warning", 
-        content: "This is warning event."
-    }] ); 
+const CalendarContainer = ({
+	getAllNotes,
+	deleteNote,
+	notes
+}) => {
+	const [ currentDate, setCurrentDate ] = useState('');
+	const [ calendarMode, setCalendarMode ] = useState('month');
+    const [ currentDateList, setCurrentDateList ] = useState( [] ); 
     const [ showModal, setShowModal ] = useState( false );
+	const [ editNote, setEditNote ]= useState( { edit: false, id: '' } );
+	const [ addNote, setAddNote ] = useState(false);
 
-    function getListData(value) {
-    
-		let listData;
-		switch (value) {
-			case 8:
-				listData = [
-					{ type: "warning", content: "This is warning event." },
-					{ type: "success", content: "This is usual event." },
-				];
-				break;
-			case 10:
-				listData = [
-					{ type: "warning", content: "This is warning event." },
-					{ type: "success", content: "This is usual event." },
-					{ type: "error", content: "This is error event." },
-				];
-				break;
-			case 15:
-				listData = [
-					{ type: "warning", content: "This is warning event" },
-					{
-						type: "success",
-						content: "This is very long usual event。。....",
-					},
-					{ type: "error", content: "This is error event 1." },
-					{ type: "error", content: "This is error event 2." },
-					{ type: "error", content: "This is error event 3." },
-					{ type: "error", content: "This is error event 4." },
-				];
-				break;
-			default:
+	useEffect ( () => {
+		if ( !notes.length ) {
+			getAllNotes();
 		}
+	}, [notes]);
+
+    const getListData = (value) => {
+		let listData = [];
+		if ( notes.length ) {
+			notes.forEach(note => {
+				if ( note.date ===  value ) {
+					listData.push({
+						id: note._id,
+						type: note.type,
+						content: note.content,
+						date: note.date
+					})
+				}
+			})
+		} 
 		return listData || [];
-	}
+	};
 
-	function dateCellRender(value) {
-
-		const listData = getListData(value.date());
+	const dateCellRender =  (value) => {
+		
+		const listData = getListData(value.format("MM.DD.Y"));
 		return (
 			<ul className='events'>
 				{listData.map((item) => (
-					<li key={item.content}>
+					<li key={item.id}>
 						<Badge status={item.type} text={item.content} />
 					</li>
 				))}
 			</ul>
 		);
-	}
+	};
 
 	function getMonthData(value) {
 		if (value.month() === 8) {
@@ -78,15 +71,72 @@ const CalendarContainer = () => {
 		) : null;
 	}
 
-    function seletedDate (date) {
-        const listData = getListData(date.date());
-        setShowModal( true )
-        setCurrentDateList( listData );
+    function seletedDate (value) {
+		
+		if ( calendarMode != 'year' ) {
+			const listData = getListData(value.format("MM.DD.Y"));
+			setShowModal( true )
+			setCurrentDateList( listData );
+			setCurrentDate( value.format("MM.DD.Y") );
+		}
+        
     }
+
+	function panelChange (val, mode) {
+		if ( calendarMode != mode ){
+			setCalendarMode(mode);
+		}
+	}
 
     function cancelModal() {
         setShowModal(false);
+		setEditNote(false);
     }
+
+	function deleteThisNote() {
+		deleteNote(this.id);
+		setCurrentDateList(currentDateList.filter( val => val.id != this.id ));
+	}
+
+	function editNoteFunc () {
+		setEditNote( prev => ({
+			...prev,
+			edit: !prev.edit,
+			id: this.id ? this.id : ''
+		} ));
+		if ( !this.id ) {
+			setAddNote(false);
+		}
+	}
+
+	function updateNoteList (note) {
+		
+		if ( currentDateList.length ) {
+			if ( note.id ) {
+				setCurrentDateList( currentDateList.map( item => {
+					if ( item.id === note.id ) {
+						item.type = note.type;
+						item.content = note.content;
+					}
+					return item;
+				}))
+			} else {
+				const newNotes = [];
+				newNotes.push(note);
+				const data = currentDateList.concat(newNotes);
+				setCurrentDateList(data)
+			}
+			
+		} else {
+			const newNotes = [];
+			newNotes.push(note)
+			setCurrentDateList(newNotes);
+		}
+	}
+
+	function addNoteFunc () {
+		setAddNote(true);
+	}
 
     return (
         <>
@@ -94,6 +144,7 @@ const CalendarContainer = () => {
                 dateCellRender={dateCellRender} 
                 monthCellRender={monthCellRender}
                 seletedDate={seletedDate}
+				panelChange={panelChange}
             />
 
             <div className={'currentDateModalontainer'}>
@@ -101,10 +152,20 @@ const CalendarContainer = () => {
                     dataList={currentDateList}
                     isShown={showModal}
                     cancelModal={cancelModal}
+					deleteNote={deleteThisNote}
+					date={currentDate}
+					editNote={editNote}
+					editNoteFunc={editNoteFunc}
+					updateNoteList={updateNoteList}
+					addNoteFunc={addNoteFunc}
+					addNote={addNote}
                 />
             </div>
         </>
     );
 }
 
-export default CalendarContainer;
+export default connect(
+	({ calendarNotes}) => calendarNotes,
+	calendarNotesActions
+)(CalendarContainer);

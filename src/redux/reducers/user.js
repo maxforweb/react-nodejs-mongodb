@@ -9,7 +9,7 @@ const initialState = {
 export default ( state = initialState, { type, payload } ) => {
 
     if ( state.userAuthToken ) {
-        state.isAuth = true;
+        state.isAuthenticated = true;
     }
 
     switch (type) {

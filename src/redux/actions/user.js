@@ -29,7 +29,7 @@ const actions = {
         })
         .catch( (err) => {
             dispatch( actions.setIsLoading( false ) );
-            errorHelper.adMessage(err);
+            console.log(error);
         }) 
     },
 
@@ -39,9 +39,10 @@ const actions = {
         userApi
             .loginUser( userData )
             .then( ( { data } ) => {
-                localStorage.setItem('token', data.tokens.accessToken);
+                localStorage.setItem('token', data.tokens.accessToken); 
                 dispatch( actions.setUserDto( data ) );
                 dispatch( actions.setTokens( data.tokens ) );
+                return data
             })
             .catch( (err) => {
                 dispatch(actions.setIsLoading( false ) );
@@ -58,9 +59,29 @@ const actions = {
                 localStorage.removeItem('token');
                 dispatch ( actions.setUserDto( '' ) );
                 dispatch( actions.setTokens( '' ) );
+                dispatch( actions.setIsLoading ( false ) );
             })
             .catch( err => {
+                dispatch( actions.setIsLoading ( false ) );
                 console.log( err );
+            })
+    },
+
+    checkAuth: () => dispatch => {
+        dispatch( actions.setIsLoading ( true ) );
+        
+        userApi
+            .refreshToken()
+            .then( (userInfo) => {
+                localStorage.setItem('token', userInfo.data.tokens.accessToken); 
+                dispatch( actions.setUserDto(userInfo.data) );
+                dispatch( actions.setTokens(userInfo.data.tokens) );
+            })
+            .catch( (err) => {
+                localStorage.removeItem('token');
+                dispatch ( actions.setUserDto( '' ) );
+                dispatch( actions.setTokens( '' ) );
+                console.log(err)
             })
     }
 }

@@ -20,17 +20,14 @@ const LoginWithFormik = withFormik({
     return errors;
   },
 
-  handleSubmit:  (values, { props, setSubmitting }) => {
+  handleSubmit: async (values, { props, setSubmitting }) => {
     // setTimeout(() => {
     //   alert(JSON.stringify(values, null, 2));
     //   setSubmitting(false);
     // }, 1000);
     
-    if ( props.loginUser(values) ) {
-      console.log(99);
-    } else {
-      console.log(88)
-    }
+    const data = await props.loginUser(values);
+    console.log(data)
     setSubmitting(false);
   },
   

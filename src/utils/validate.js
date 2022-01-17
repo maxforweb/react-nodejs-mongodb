@@ -30,7 +30,6 @@ export default ({ isAuth, values, errors }) => {
             else if( value != password.value ) {
                 errors.repeatPassword ='Wrong password'
             }
-            console.log( errors, value)
         
         },
 
@@ -61,6 +60,12 @@ export default ({ isAuth, values, errors }) => {
             }
             else if ( !/^(?=.*[a-z]).{3,}/ ) {
                 errors.name = "Name should containn more than 1 symbol"
+            }
+        },
+
+        content: ( errors, value ) => {
+            if ( !value ) {
+                errors.noteContent = 'Required';
             }
         }
         

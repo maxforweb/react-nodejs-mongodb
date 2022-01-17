@@ -13,15 +13,29 @@ const actions = {
         type: "ADS:SET_IS_LOADING",
         payload: bool
     }),
-    getAds: () => disapatch => {
-        disapatch(actions.setIsLoading(true))
+    getAds: () => dispatch => {
+        dispatch(actions.setIsLoading(true))
         adsApi
             .getAll()
             .then( ( { data } ) => {
-                disapatch( actions.setAds( data ) );
+                dispatch( actions.setAds( data ) );
             })
             .catch(() => {
-                disapatch(actions.setIsLoading(false));
+                dispatch(actions.setIsLoading(false));
+            })
+    },
+
+    createAd: (ad) => dispatch => {
+        dispatch(actions.setIsLoading(true))
+        
+        adsApi
+            .create(ad)
+            .then( ({ data })  => {
+                console.log(data);
+            })
+            .catch((err) => {
+                dispatch(actions.setIsLoading(false))
+                console.log(err);
             })
     }
 }
