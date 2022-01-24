@@ -1,4 +1,5 @@
 export default ({ isAuth, values, errors }) => { 
+    
     const rules = {
         
         email: ( errors, value ) => {
@@ -36,7 +37,7 @@ export default ({ isAuth, values, errors }) => {
         phone: ( errors, value ) => {
 
             if( !value ) {
-                errors.phone = 'Required';
+                // errors.phone = 'Required';
             }
             else if ( !/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/.test( value ) ) {
                 errors.phone = " Wrong phone number ";
@@ -61,6 +62,16 @@ export default ({ isAuth, values, errors }) => {
             else if ( !/^(?=.*[a-z]).{3,}/ ) {
                 errors.name = "Name should containn more than 1 symbol"
             }
+        },
+
+        lastName: ( errors, value ) => {
+            if ( !value ) {
+                
+            }
+            else if ( !/^(?=.*[a-z]).{3,}/.test(value) ) {
+                errors.lastName = "Name should containn more than 2 symbols"
+            }
+
         },
 
         content: ( errors, value ) => {

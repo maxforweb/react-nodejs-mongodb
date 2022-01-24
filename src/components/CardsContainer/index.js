@@ -14,10 +14,11 @@ const CardsContainer = ({ items, onSelectChange, selectValue, onSelectAd, isLoad
 
 
     return (
-        <>
+        <div className={'container posts_container'}>
             <Select 
                 value={ selectValue }
                 onChange={ onSelectChange }
+                className={ 'posts_filter'}
             >
                 <Option value="new">Newest</Option>
                 <Option value="old">Oldest</Option>
@@ -46,7 +47,7 @@ const CardsContainer = ({ items, onSelectChange, selectValue, onSelectAd, isLoad
                     
                 }
             </div>
-        </>
+        </div >
     )
 }
 

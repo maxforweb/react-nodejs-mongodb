@@ -29,42 +29,59 @@ const actions = {
         })
         .catch( (err) => {
             dispatch( actions.setIsLoading( false ) );
-            console.log(error);
+            console.log(err);
         }) 
     },
 
-    loginUser: userData => dispatch => {
+    loginUser: (userData) => dispatch => {
         dispatch( actions.setIsLoading( true ) );
 
-        userApi
+        // const user = await userApi.loginUser(userData);
+
+        // console.log(user);
+        return(
+            userApi
             .loginUser( userData )
             .then( ( { data } ) => {
-                localStorage.setItem('token', data.tokens.accessToken); 
-                dispatch( actions.setUserDto( data ) );
-                dispatch( actions.setTokens( data.tokens ) );
-                return data
+                // console.log(data)
+                if ( data.status === 200 ) {
+                    localStorage.setItem('token', data.tokens.accessToken); 
+                    dispatch( actions.setUserDto( data ) );
+                    dispatch( actions.setTokens( data.tokens ) );
+                    return data 
+                } else {
+                    dispatch(actions.setIsLoading( false ) );
+                    return data
+                }
+                
             })
-            .catch( (err) => {
+            .catch( (error) => {
                 dispatch(actions.setIsLoading( false ) );
-                errorHelper.adMessage(err);
+                console.log(error)
+                return error;
             } )
+        );
     },
 
     logout: () => dispatch => {
         dispatch( actions.setIsLoading ( true ) );
 
-        userApi
-            .logout()
-            .then( () => {
-                localStorage.removeItem('token');
-                dispatch ( actions.setUserDto( '' ) );
-                dispatch( actions.setTokens( '' ) );
-                dispatch( actions.setIsLoading ( false ) );
-            })
-            .catch( err => {
-                dispatch( actions.setIsLoading ( false ) );
-                console.log( err );
-            })
+        return(
+            userApi
+                .logout()
+                .then( () => {
+                    localStorage.removeItem('token');
+                    dispatch( actions.setTokens( '' ) );
+                    dispatch ( actions.setUserDto( {user: null} ) );
+                    dispatch( actions.setIsLoading ( false ) );
+                    return true;
+                })
+                .catch( err => {
+                    dispatch( actions.setIsLoading ( false ) );
+                    console.log( err );
+                    return false;
+                })
+        )
     },
 
     checkAuth: () => dispatch => {
@@ -83,7 +100,24 @@ const actions = {
                 dispatch( actions.setTokens( '' ) );
                 console.log(err)
             })
-    }
+    },
+
+    editUserInfo: (user) => dispatch => {
+        dispatch( actions.setIsLoading(true) );
+
+        return(
+            userApi
+                .editUserInfo(user)
+                .then( (data) => {
+                    console.log(data);
+                    return data
+                } )
+                .catch( (err) => {
+                    dispatch( actions.setIsLoading(false) );
+                    return err;
+                })
+        )
+    },
 }
 
 export default actions;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 
 import { userActions } from '../../../redux/actions';
 
@@ -12,8 +12,16 @@ import logo from 'assets/logo3.png';
 
 
 const  Header = ({selectedKey, userInfo, isLoading, userAuthToken, logout}) => {
-    function logoutUser() {
-        console.log(logout())
+
+    let history = useHistory();
+
+    async function logoutUser() {
+        const logoutFunc = await logout();
+
+        if( logoutFunc ) {
+
+            history.push('/');
+        }
     }
         return (
             <header className="d-flex">
@@ -37,24 +45,29 @@ const  Header = ({selectedKey, userInfo, isLoading, userAuthToken, logout}) => {
                                 className='menu'
                                 defaultSelectedKeys={selectedKey}>
                             
-                                <Menu.Item key="1" > <Link to='/' className='link' > Домой </Link> </Menu.Item>
+                                <Menu.Item key="1" > <Link to='/posts' className='link' > Домой </Link> </Menu.Item>
                                 <Menu.Item key="2"> <Link to='/createad' className='link' > Создать объявление </Link> </Menu.Item>
-                                <Menu.Item key="4"> <Link to="/" className='link' > Option 4 </Link> </Menu.Item>
-                                <Menu.Item key="5"> <Link to="/calendar" className='link' > Calendar </Link> </Menu.Item>
+                                <Menu.Item key="4"> <Link to="/calendar" className='link' > Calendar </Link> </Menu.Item>
+                                <Menu.Item key="5"> <Link to="/" className='link' > Option 4 </Link> </Menu.Item>
                                 
                             </Menu>
                         </Col>
-                        <Col
-                            span="6" >
+                            <Col
+                                span={ userAuthToken ? '3' : '6' } 
+                            >
+                        
                             <div className="user">
                                 { userAuthToken ? (
                                     <div className="header_auth_container d-flex justify-content-between" >
-                                        <UserOutlined className='user-avatar'/>
-                                        <span 
-                                        className="btn login_btn" 
-                                        onClick={logoutUser}> 
+                                        <Link to='/user'>
+                                            <UserOutlined className='user-avatar'/>
+                                        </Link>
+                                        <button 
+                                            className="btn login_btn" 
+                                            onClick={logoutUser}
+                                        > 
                                             Выйти 
-                                        </span>
+                                        </button>
                                     </div>  
                                 ) : (
                                     <div className="header_auth_container d-flex justify-content-between">

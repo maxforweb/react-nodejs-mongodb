@@ -6,16 +6,17 @@ import { CurrentAd } from 'components';
 import { currentAdActions } from '../redux/actions';
 
 
-const CurrentAdContainer = ({getCurrentAd, currentAdId, currentAdInfo}) => {
+const CurrentAdContainer = ({getCurrentAd, currentAdId, currentAdInfo, id}) => {
 
     useEffect( () => {
         if(!currentAdInfo._id) {
-            getCurrentAd(currentAdId);
+            getCurrentAd(id);
         }
     },{currentAdInfo})
     
     return(
-        <div>{currentAdInfo.title}</div>
+        <div>{currentAdInfo.title}, {id}</div>
+        
     )
 } 
 

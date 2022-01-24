@@ -1,9 +1,11 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useRouteMatch, Route, Switch} from 'react-router-dom';
 
 import classNames from 'classnames';
 import { Card, Empty, Avatar  } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+
+import { AdPage } from '../../pages';
 
 import './card.scss';
 
@@ -16,8 +18,12 @@ const Cards = ( {
     _id, 
     onSelect, 
     size} ) => {
+
+    let { path, url } = useRouteMatch();
+    console.log(path)
     return (
-       <Link to={`/ad/${_id}`} >
+        <>       
+        <Link to={`/post/${_id}`} >
             <Card 
             hoverable
             style={{borderRadius: 15, marginTop: 20}}
@@ -54,6 +60,14 @@ const Cards = ( {
                 
             </Card>
         </Link>
+        
+        {/* <Switch >
+            <Route exact path={path} ></Route>
+            <Route path={`/ad/:id`}>
+                <AdPage />
+            </Route>
+        </Switch > */}
+        </>
     
     )
 }

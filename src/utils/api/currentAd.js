@@ -2,5 +2,5 @@ import {axios} from "core";
 
 
 export default {
-    getCurrentById: id =>  axios.get("/ads/" + id)
+    getCurrentById: id =>  axios.get(`/posts/${id}` )
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { LoginForm, RegisterForm } from 'modules';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
@@ -15,8 +15,10 @@ const Auth = (props) => {
     } else {
         return (
             <section className='auth'>
-                <Route exact path={[ '/login' ]} component={LoginForm} />
-                <Route exact path='/register' component={RegisterForm} />
+                <Switch >
+                    <Route exact path={[ '/login' ]} component={LoginForm} />
+                    <Route exact path='/register' component={RegisterForm} />
+                </Switch>
             </section>
         )
     }

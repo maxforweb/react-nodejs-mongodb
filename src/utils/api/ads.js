@@ -2,6 +2,7 @@ import {axios} from "core";
 
 
 export default {
-    getAll: () =>  axios.get("/ads"),
-    create: (ad) => axios.post('/ads/create/', ad),
+    getAll: () =>  axios.get("/posts"),
+    create: (ad) => axios.post('/posts/create/', ad),
+    getCurrent: (id) => axios.get(`/posts/${id}`),
 }

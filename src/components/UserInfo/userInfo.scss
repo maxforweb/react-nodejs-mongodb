@@ -1,0 +1,21 @@
+.user_info_page {
+    width: 100%;
+
+    &--title {
+        text-align: center;
+        margin-top: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #5ACC6D;
+    }
+
+    &--info  {
+        margin-top: 10px;
+        span {
+            font-weight: 600;
+        }
+    }
+
+    &--edit_button {
+        margin-top: 10px;
+    }
+}

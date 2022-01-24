@@ -5,3 +5,4 @@ export { default as CardsContainer } from './CardsContainer';
 export { default as CurrentAd } from './CurrentAd';
 export { default as Calendar } from './Calendar';
 export { default as CalendarModal } from './CalendarModal';
+export { default as UserInfo } from './UserInfo';

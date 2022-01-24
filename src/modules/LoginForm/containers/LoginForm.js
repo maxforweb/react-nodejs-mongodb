@@ -20,14 +20,16 @@ const LoginWithFormik = withFormik({
     return errors;
   },
 
-  handleSubmit: async (values, { props, setSubmitting }) => {
-    // setTimeout(() => {
-    //   alert(JSON.stringify(values, null, 2));
-    //   setSubmitting(false);
-    // }, 1000);
+  handleSubmit: async (values, { props, setSubmitting, setStatus }) => {
     
     const data = await props.loginUser(values);
-    console.log(data)
+    
+    if ( data.status === 403 || data.status === 404 ) {
+
+      setStatus({type: data.status, message: data.message})
+    
+    }
+    
     setSubmitting(false);
   },
   
@@ -36,6 +38,6 @@ const LoginWithFormik = withFormik({
 
 
 export default connect(
-  null,
+  ({user}) => ({user: user,}),
   userActions
 )(LoginWithFormik)

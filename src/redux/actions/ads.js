@@ -37,7 +37,22 @@ const actions = {
                 dispatch(actions.setIsLoading(false))
                 console.log(err);
             })
-    }
+    },
+
+    // getCurrent: (id) => dispatch => {
+    //     dispatch(setIsLoading(true));
+
+    //     return (
+    //         adsApi
+    //             .getCurrent(id)
+    //             .then( data => {
+    //                 console.log(data);
+    //             })
+    //             .catch( err => {
+    //                 console.log(err);
+    //             })
+    //     )
+    // }
 }
 
 export default actions;

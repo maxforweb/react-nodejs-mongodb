@@ -47,6 +47,7 @@ header {
         border: 2px solid #fff;
         border-radius: 50%;
         transition: .4s;
+        color: #000;
     }
 
     .user-avatar:hover {
@@ -55,5 +56,12 @@ header {
     }
     .link {
         color: #fff !important;
+    }
+
+    .login_btn {
+        cursor: pointer;
+        text-align: center;
+        padding: 5px 10px;
+        min-width: 100px
     }
 }

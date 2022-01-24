@@ -166,6 +166,6 @@ const CalendarContainer = ({
 }
 
 export default connect(
-	({ calendarNotes}) => calendarNotes,
+	({ calendarNotes }) => calendarNotes,
 	calendarNotesActions
 )(CalendarContainer);

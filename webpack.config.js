@@ -4,11 +4,12 @@ const path = require('path');
 const config = {
   entry: [
     'react-hot-loader/patch',
-    './src/index.js'
+    path.resolve(__dirname, 'src', 'index.js')
   ],
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, './dist'),
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -68,8 +69,11 @@ const config = {
     }
   },
   devServer: {
-    contentBase: './dist',
-    historyApiFallback: true
+    historyApiFallback: true,
+    contentBase: path.resolve(__dirname, './dist'),
+    open: true,
+    hot: true,
+    compress: true,
   }
 };
 

@@ -7,12 +7,12 @@ import { connect } from 'react-redux';
 
 const RegisterWithFormik =  withFormik({
   enableReinitialize: true,
-    mapPropsToValues: () => ({
-      name: '',
-      email: '',
-      password: '',
-      repeatPassword: ''
-    }),
+  mapPropsToValues: () => ({
+    name: '',
+    email: '',
+    password: '',
+    repeatPassword: ''
+  }),
   
   validate: values => {
     let errors = {};

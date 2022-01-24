@@ -6,7 +6,7 @@ import { CalendarContainer } from 'containers';
 const CalendarPage = () => {
 	return (
 		<>
-			<Header selectedKey={"5"} />
+			<Header selectedKey={"4"} />
 			<div className='container'>
 				<div>CalendarPage</div>
         <CalendarContainer />

@@ -14,6 +14,11 @@ export default ( state = initialState, { type, payload } ) => {
 
     switch (type) {
         case "USER:SET_USER_DTO":
+            if ( payload.user == null ){
+                state.isAuthenticated = false;
+            } else {
+                state.isAuthenticated = true;
+            }
             return {
                 ...state, 
                 userInfo: payload.user,

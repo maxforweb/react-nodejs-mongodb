@@ -5,4 +5,5 @@ export default {
     registerUser: registerData => axios.post("/user/create", registerData),
     refreshToken: () => axios.get('/refreshToken'),
     logout: () => axios.post('user/logout'),
+    editUserInfo: ( user ) => axios.post('user/update', user), 
 }
