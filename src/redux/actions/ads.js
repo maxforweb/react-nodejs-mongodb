@@ -13,10 +13,10 @@ const actions = {
         type: "ADS:SET_IS_LOADING",
         payload: bool
     }),
-    getAds: () => dispatch => {
+    getAds: (sort) => dispatch => {
         dispatch(actions.setIsLoading(true))
         adsApi
-            .getAll()
+            .getAll(sort)
             .then( ( { data } ) => {
                 dispatch( actions.setAds( data ) );
             })
@@ -52,7 +52,25 @@ const actions = {
     //                 console.log(err);
     //             })
     //     )
-    // }
+    // },
+
+    getByUser: (id) => dispatch => {
+        dispatch( actions.setIsLoading(true) );
+
+        adsApi
+            .getByUser(id)
+            .then( ( { data } ) => {
+                dispatch( actions.setAds(data) );
+            })
+            .catch(err => {
+                dispatch( actions.setIsLoading(false) );
+                console.log(err);
+            })
+    },
+
+    removePosts: () => dispatch => {
+        dispatch( actions.setAds([]) );
+    }
 }
 
 export default actions;

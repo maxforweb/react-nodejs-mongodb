@@ -93,14 +93,14 @@ const LoginForm = props => {
                                 hasFeedback
                             >
                                 <Input
-                                id = 'password'
-                                prefix={<LockOutlined className="site-form-item-icon" />}
-                                type="password"
-                                placeholder="Password"
-                                size='large'
-                                value={values.password}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
+                                    id = 'password'
+                                    prefix={<LockOutlined className="site-form-item-icon" />}
+                                    type="password"
+                                    placeholder="Password"
+                                    size='large'
+                                    value={values.password}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
                                 />
                             </Form.Item>
                             <Form.Item>
@@ -108,7 +108,7 @@ const LoginForm = props => {
                                 <Checkbox>Remember me</Checkbox>
                                 </Form.Item>
         
-                                <Link className="login-form-forgot" to="#">
+                                <Link className="login-form-forgot" to="/forgot-password">
                                 Forgot password
                                 </Link>
                             </Form.Item>

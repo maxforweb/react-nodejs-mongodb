@@ -82,6 +82,9 @@ const EditUserForm = ( props ) => {
                             <Button type="primary" className="login-form-button" onClick={handleSubmit}>
                                 Save changes
                             </Button>
+                            <Button onClick={props.cancelEditting}>
+                                Disard changes
+                            </Button>
                         </Form.Item>
                     </Form>
                 ) : props.status && props.status.type === 200 ? (
@@ -91,7 +94,7 @@ const EditUserForm = ( props ) => {
                             title={props.status.message}
                             extra={
                                 <Link to={'/user'}>
-                                    <Button type="primary" >
+                                    <Button type="primary" onClick={props.cancelEditting}>
                                         Go Back
                                     </Button>
                                 </Link>
@@ -104,7 +107,7 @@ const EditUserForm = ( props ) => {
                             status="error"
                             title={props.status.message}
                             extra={
-                            <Button type="primary" >
+                            <Button type="primary" onClick={props.cancelEditting}>
                                 Go Back
                             </Button>
                             }

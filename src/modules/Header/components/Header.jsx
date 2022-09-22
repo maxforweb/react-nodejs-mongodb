@@ -4,7 +4,7 @@ import {Link, useHistory} from 'react-router-dom';
 
 import { userActions } from '../../../redux/actions';
 
-import { Menu, Row, Col, Button  } from "antd";
+import { Menu, Row, Col, Avatar  } from "antd";
 import { UserOutlined } from '@ant-design/icons';
 import './header.scss';
 
@@ -20,7 +20,7 @@ const  Header = ({selectedKey, userInfo, isLoading, userAuthToken, logout}) => {
 
         if( logoutFunc ) {
 
-            history.push('/');
+            history.push('/posts');
         }
     }
         return (
@@ -60,7 +60,10 @@ const  Header = ({selectedKey, userInfo, isLoading, userAuthToken, logout}) => {
                                 { userAuthToken ? (
                                     <div className="header_auth_container d-flex justify-content-between" >
                                         <Link to='/user'>
-                                            <UserOutlined className='user-avatar'/>
+                                            {
+                                                userInfo.avatar ? (<Avatar size={40} src={`http://localhost:3000/avatars/${userInfo.avatar}`} />) : (<UserOutlined className='user-avatar'/>)
+                                            }
+                                            
                                         </Link>
                                         <button 
                                             className="btn login_btn" 

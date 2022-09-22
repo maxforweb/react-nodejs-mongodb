@@ -4,25 +4,32 @@ import { connect } from 'react-redux';
 import {CardsContainer as BaseContainer } from 'components';
 import { adsActions } from '../redux/actions';
 
-const CardsContainer = ({ getAds, setCurrentAd, items, isLoading }) => {
-    const [ selectValue, setValue ] = useState('');
-    const [ filtred, setFilteredItems] = useState( Array.from(items) );
+const CardsContainer = ( { id, getAds, setCurrentAd, getByUser, removePosts, items, isLoading, user } ) => {
+    
+    const [ sortValue, setSortValue ] = useState('NEW');
 
     const onSelectChange = (value) =>{
-        setValue(value);  
+        setSortValue(value);  
     }
 
+
     useEffect( () => {
-        if( !items.length ) {
-            getAds();
+        if( !id ) {
+            getAds(sortValue);
+        } else if ( id ) {
+            getByUser(id);
         }
-    }, [items] );
+
+        return function cleanup() {
+            removePosts();
+        }
+    }, [sortValue] );
 
     return(
         <BaseContainer 
             items={items}
             onSelectChange={onSelectChange}
-            selectValue={selectValue}
+            sortValue={sortValue}
             onSelectAd={setCurrentAd}
             isLoading={isLoading}
         />
@@ -30,6 +37,10 @@ const CardsContainer = ({ getAds, setCurrentAd, items, isLoading }) => {
 };
 
 export default connect( 
-    ({ ads }) => ads,
+    ({ ads, user }) => ({
+        items: ads.items,
+        isLoading: ads.isLoading,
+        user: user.userInfo
+    }),
     adsActions
 )(CardsContainer);

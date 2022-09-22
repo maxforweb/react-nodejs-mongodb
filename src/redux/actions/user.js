@@ -36,14 +36,11 @@ const actions = {
     loginUser: (userData) => dispatch => {
         dispatch( actions.setIsLoading( true ) );
 
-        // const user = await userApi.loginUser(userData);
-
-        // console.log(user);
         return(
             userApi
             .loginUser( userData )
             .then( ( { data } ) => {
-                // console.log(data)
+
                 if ( data.status === 200 ) {
                     localStorage.setItem('token', data.tokens.accessToken); 
                     dispatch( actions.setUserDto( data ) );
@@ -87,12 +84,18 @@ const actions = {
     checkAuth: () => dispatch => {
         dispatch( actions.setIsLoading ( true ) );
         
-        userApi
+        return(
+            userApi
             .refreshToken()
             .then( (userInfo) => {
-                localStorage.setItem('token', userInfo.data.tokens.accessToken); 
-                dispatch( actions.setUserDto(userInfo.data) );
-                dispatch( actions.setTokens(userInfo.data.tokens) );
+                if ( userInfo.status === 403 ) {
+                    return userInfo.message;
+                } else {
+                    localStorage.setItem('token', userInfo.data.tokens.accessToken); 
+                    dispatch( actions.setUserDto(userInfo.data) );
+                    dispatch( actions.setTokens(userInfo.data.tokens) );
+                    return true;
+                }
             })
             .catch( (err) => {
                 localStorage.removeItem('token');
@@ -100,6 +103,7 @@ const actions = {
                 dispatch( actions.setTokens( '' ) );
                 console.log(err)
             })
+        )
     },
 
     editUserInfo: (user) => dispatch => {
@@ -118,6 +122,61 @@ const actions = {
                 })
         )
     },
+
+    changePassword: ( data ) => dispatch => {
+        dispatch( actions.setIsLoading(true) );
+
+        return(
+            userApi
+                .changePass( data )
+                .then( res => {
+                     console.log(res);
+                    return res.data
+                })
+                .catch( err => {
+                    dispatch( actions.setIsLoading(false) );
+                    return err;
+                })
+        )
+    },
+
+    uploadUserAvatar: ( data ) => dispatch => {
+        dispatch( actions.setIsLoading(true) );
+        const formData = new FormData();
+        formData.append('file', data);
+        
+        return (
+            userApi
+                .uploadAvatar(formData)
+                .then( (userInfo) => {
+                    if ( userInfo.data.status === 200 ) {
+                        dispatch( actions.setUserDto(userInfo.data) );
+                        return userInfo.data
+                    }
+                })
+                .catch( err => {
+                    dispatch( actions.setIsLoading(false) );
+                    return err;
+                })
+        )
+    },
+
+    forgotPassword: ( data ) => dispatch => {
+        dispatch( actions.setIsLoading( true ) );
+        
+        return(
+            userApi
+                .forgotPassword( data )
+                .then( res => {
+                  return res;  
+                })
+                .catch( err => {
+                    dispatch( actions.setIsLoading(false) );
+
+                    return err;
+                })
+        )
+    }
 }
 
 export default actions;

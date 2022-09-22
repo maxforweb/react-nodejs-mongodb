@@ -8,7 +8,7 @@ const UserInfo = ({ user, }) => {
     const [ isEditting, setIsEditting ] = useState(false);
 
     const changeEditMode = () => {
-        setIsEditting(true);
+        setIsEditting( prev => !prev );
     }
 
     return (

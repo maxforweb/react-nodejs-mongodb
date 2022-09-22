@@ -8,22 +8,20 @@ import {Card} from 'components'
 
 import './cardsContainer.scss';
 
-const CardsContainer = ({ items, onSelectChange, selectValue, onSelectAd, isLoading }) => {
+const CardsContainer = ({ items, onSelectChange, sortValue, onSelectAd, isLoading }) => {
     const { Option } = Select;
-
-
 
     return (
         <div className={'container posts_container'}>
             <Select 
-                value={ selectValue }
+                value={ sortValue }
                 onChange={ onSelectChange }
-                className={ 'posts_filter'}
+                className={ 'posts_sort'}
             >
-                <Option value="new">Newest</Option>
-                <Option value="old">Oldest</Option>
-                <Option value="high"> High rating </Option>
-                <Option value="low"> Low rating </Option>
+                <Option value="NEW">Newest</Option>
+                <Option value="OLD">Oldest</Option>
+                <Option value="HIGH"> High rating </Option>
+                <Option value="LOW"> Low rating </Option>
             </Select>
             <div className={classNames('cards_container')}>
                 
@@ -39,6 +37,7 @@ const CardsContainer = ({ items, onSelectChange, selectValue, onSelectAd, isLoad
                             image={item.img}
                             price={item.price}
                             key={item._id}
+                            date={item.createdAt}
                             onSelect={onSelectAd}
                             {...item}
                         />

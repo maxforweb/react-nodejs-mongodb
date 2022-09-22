@@ -13,6 +13,7 @@ const createAd =  withFormik({
         price: '',
         title: '',
         description: '',
+        pictures: [],
     }),
 
     validate: values => {
@@ -28,8 +29,6 @@ const createAd =  withFormik({
             owner: props.userInfo.id,
             ...values,
         }
-
-        console.log(newAd);
 
         await props.createAd(newAd);
 

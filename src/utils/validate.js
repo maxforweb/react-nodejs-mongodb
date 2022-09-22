@@ -1,5 +1,5 @@
 export default ({ isAuth, values, errors }) => { 
-    
+
     const rules = {
         
         email: ( errors, value ) => {
@@ -10,6 +10,14 @@ export default ({ isAuth, values, errors }) => {
                 errors.email = 'Invalid email address';
             }
     
+        },
+
+        oldPass: ( errors, value ) => {
+          
+            if ( !value ) {
+                errors.oldPass = 'Required'
+            }
+            
         },
     
         password: ( errors, value ) => {
@@ -29,7 +37,7 @@ export default ({ isAuth, values, errors }) => {
                 errors.repeatPassword = 'Required'
             }
             else if( value != password.value ) {
-                errors.repeatPassword ='Wrong password'
+                errors.repeatPassword ='Passwords are not equal'
             }
         
         },

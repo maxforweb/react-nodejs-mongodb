@@ -18,7 +18,7 @@ const App = ({checkAuth, user}) => {
     
     return(
       <Switch >
-        <Route exact path={[ '/login', '/register' ]} >{user.isAuthenticated ? <Redirect to="/posts" /> : <Auth />}</Route>
+        <Route exact path={[ '/login', '/register', '/forgot-password' ]} >{user.isAuthenticated ? <Redirect to="/posts" /> : <Auth />}</Route>
         <Route exact path={'/posts' } component={Home} />
         <Route exact path={[ '/createad']} component={CreateAd} />
         <Route exact path={"/post/:id"} component={AdPage} />

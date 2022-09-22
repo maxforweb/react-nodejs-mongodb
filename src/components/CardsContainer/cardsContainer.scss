@@ -3,6 +3,7 @@
     margin: 20px auto ;
     flex-wrap: wrap;
     justify-content: space-around;
+    display: flex;
 }
 
 .posts_container {
@@ -13,7 +14,7 @@
     align-items: center;
 
     
-    .posts_filter {
+    .posts_sort {
 
     }
 }

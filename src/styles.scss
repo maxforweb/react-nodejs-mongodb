@@ -125,3 +125,7 @@ a[href], li {
     background-color: #FFF;
     color: #5ACC6D;
 }
+
+.ant-form-item-label > label {
+    width: auto;
+}

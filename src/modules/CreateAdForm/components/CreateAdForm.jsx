@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { Link } from "react-router-dom";
 
-import { Form, Input, Select, Result  } from 'antd';
+import { Form, Input, Select, Result, Upload  } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 import { Button, Block } from 'components';
 
 import "./createAdForm.scss";
 import { validateField } from "utils/helpers";
 
 const CreateAdForm = props => {
-    
+    const [ fileList, setFileList ] = useState([]);
     
     const {
         values,
@@ -24,6 +25,21 @@ const CreateAdForm = props => {
 
     const selectChange = (val) => {
         props.setFieldValue('area', val);
+    }
+
+    const handleUploadChange = (val) => {
+        console.log(val);
+    }
+    
+    const beforeUpload = (file) => {
+        setFileList(() => {
+            if ( fileList.length ) {
+                return [...fileList, file];
+            } else {
+                return [file]
+            }
+        });
+        props.setFieldValue('pictures', fileList)
     }
       
     return (
@@ -111,6 +127,19 @@ const CreateAdForm = props => {
                                     <Select.Option  value="second">Second Option</Select.Option>
                                     <Select.Option  value="third">Third Option</Select.Option>
                                 </Select>
+                            </Form.Item>
+                            <Form.Item
+                                label="Picture"
+                                hasFeedback
+                            >
+                                <Upload
+                                    beforeUpload={beforeUpload}
+                                    fileList={[...fileList]}
+                                    multiple={true}
+                                    maxCount={10}
+                                >
+                                    <Button icon={<UploadOutlined />}>Upload</Button>
+                                </Upload>
                             </Form.Item>
                             <Form.Item >
                                 <Button type="primary" onClick={handleSubmit}>
